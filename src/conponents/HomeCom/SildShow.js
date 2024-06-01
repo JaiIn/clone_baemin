@@ -3,6 +3,8 @@ import food1 from "../myImages/food/1.jpg";
 import { useState } from "react";
 import Search from "./Modlas/Search";
 import gps from "../myImages/logo/gps.png";
+import { Link } from "react-router-dom";
+
 
 function SildShow() {
     const [isClicked, setIsClicked] = useState(false);
@@ -28,7 +30,10 @@ function SildShow() {
                         onClick={openModal}
                     />
                 </InputWrap>
-                <StyledGangnamBtn>'강남역' 주소로 구경하기</StyledGangnamBtn>
+                <Link to='/store'>
+                    <StyledGangnamBtn>'강남역' 주소로 구경하기</StyledGangnamBtn>
+                </Link>
+
             </StyledImage>
             <Search isOpen={isClicked} onClose={closeModal} />
         </StyledImageBack>

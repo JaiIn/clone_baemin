@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import ModalPortal from "./ModalPortal";
 
-
 function Search({ isOpen, onClose }) {
     useEffect(()=>{
         if(isOpen){
@@ -76,7 +75,7 @@ flex-direction: column;
 background-color: white;
 border-radius: 10px;
 transform: translateY(${props => (props.isOpen ? "0%" : "100%")});
-transition: transform 3.5s linear;
+transition: transform 0.5s linear;
 `;
 
 const InputAdd = styled.input`

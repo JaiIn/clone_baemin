@@ -1,8 +1,8 @@
-import Home from '../conponents/Home'
+import Router from '../conponents/Router';
 
 function App() {
   return (
-    <Home/>
+    <Router/>
   );
 }
 
