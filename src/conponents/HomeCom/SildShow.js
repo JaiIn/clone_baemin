@@ -8,10 +8,11 @@ import { ClickContext } from "./contexts/ClickContext";
 
 function SildShow() {
 
-    const {isClicked,openModal,closeModal} = useContext(ClickContext);
+    const {openModal} = useContext(ClickContext);
 
     return (
-        <StyledImageBack key={1}>
+        <StyledImageBack>
+            <Search/>
             <StyledImage style={{ backgroundImage: `url(${food1})` }}>
                 <StyledH2>내일까지 어떻게 기다려요?</StyledH2>
                 <StyledH1>배민 스토어는 지금 옵니다.</StyledH1>
@@ -27,7 +28,6 @@ function SildShow() {
                     <StyledGangnamBtn>'강남역' 주소로 구경하기</StyledGangnamBtn>
                 </Link>
             </StyledImage>
-            <Search isOpen={isClicked} onClose={closeModal} />
         </StyledImageBack>
     );
 }

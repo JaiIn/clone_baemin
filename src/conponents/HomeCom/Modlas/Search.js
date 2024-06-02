@@ -16,7 +16,7 @@ function Search() {
     }, [isClicked])
     return (
         <ModalPortal>
-            {isClicked ?
+            {isClicked &&
                 (<ModalWrap>
                     <Overlay onClick={closeModal} />
                     <ModalBack isClicked={isClicked}>
@@ -47,7 +47,7 @@ function Search() {
                             </ul>
                         </Graydiv>
                     </ModalBack>
-                </ModalWrap>):null}
+                </ModalWrap>)}
         </ModalPortal>
     );
 }
