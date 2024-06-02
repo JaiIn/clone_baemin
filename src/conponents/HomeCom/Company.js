@@ -22,7 +22,6 @@ function Company() {
                     Fax 050-6050-0400
                 </Contant>
 
-
                 <Table>
                     <TableRow>
                         <TableData>

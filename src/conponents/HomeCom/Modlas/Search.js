@@ -1,25 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import ModalPortal from "./ModalPortal";
+import { ClickContext } from "../contexts/ClickContext";
 
-function Search({ isOpen, onClose }) {
-    useEffect(()=>{
-        if(isOpen){
+function Search() {
+
+    const {isClicked, closeModal} = useContext(ClickContext);
+
+    useEffect(() => {
+        if (isClicked) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "auto";
         }
-    },[isOpen])
-    
+    }, [isClicked])
     return (
         <ModalPortal>
-            {isOpen && (
-                <ModalWrap>
-                    <Overlay onClick={onClose} />
-                    <ModalBack isOpen={isOpen}>
+            {isClicked ?
+                (<ModalWrap>
+                    <Overlay onClick={closeModal} />
+                    <ModalBack isClicked={isClicked}>
                         <StyledCon>
                             <StyledSpan> 주소 검색 </StyledSpan>
-                            <ExitButton onClick={onClose}>X</ExitButton>
+                            <ExitButton onClick={closeModal}>X</ExitButton>
                         </StyledCon>
                         <InputAdd
                             type="text"
@@ -30,22 +33,21 @@ function Search({ isOpen, onClose }) {
                             </StyledSpan>
                             <ul>
                                 <li>
-                                    도로명 + 건물번호<br/>
+                                    도로명 + 건물번호<br />
                                     예) 배민로 12길 3
                                 </li>
                                 <li>
-                                    건물명 + 번지<br/>
+                                    건물명 + 번지<br />
                                     예) 배민로 12-3
                                 </li>
                                 <li>
-                                    건물명, 아파트명<br/>
+                                    건물명, 아파트명<br />
                                     예) 배민아파트 101동
                                 </li>
                             </ul>
                         </Graydiv>
                     </ModalBack>
-                </ModalWrap>
-            )}
+                </ModalWrap>):null}
         </ModalPortal>
     );
 }
@@ -74,7 +76,7 @@ display: flex;
 flex-direction: column;
 background-color: white;
 border-radius: 10px;
-transform: translateY(${props => (props.isOpen ? "0%" : "100%")});
+transform: translateY(${props => (props.isClicked ? "0%" : "100%")});
 transition: transform 0.5s linear;
 `;
 

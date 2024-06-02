@@ -1,21 +1,14 @@
 import styled from "styled-components";
 import food1 from "../myImages/food/1.jpg";
-import { useState } from "react";
+import { useContext } from "react";
 import Search from "./Modlas/Search";
 import gps from "../myImages/logo/gps.png";
 import { Link } from "react-router-dom";
-
+import { ClickContext } from "./contexts/ClickContext";
 
 function SildShow() {
-    const [isClicked, setIsClicked] = useState(false);
 
-    const openModal = () => {
-        setIsClicked(true);
-    };
-
-    const closeModal = () => {
-        setIsClicked(false);
-    };
+    const {isClicked,openModal,closeModal} = useContext(ClickContext);
 
     return (
         <StyledImageBack key={1}>
@@ -33,7 +26,6 @@ function SildShow() {
                 <Link to='/store'>
                     <StyledGangnamBtn>'강남역' 주소로 구경하기</StyledGangnamBtn>
                 </Link>
-
             </StyledImage>
             <Search isOpen={isClicked} onClose={closeModal} />
         </StyledImageBack>
