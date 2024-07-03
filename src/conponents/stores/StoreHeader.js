@@ -1,22 +1,26 @@
 import styled from "styled-components";
 import Logo from "../myImages/logo/main_logo.jpg";
 import ThreeLine from "../myImages/logo/threeline.jpg";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { ClickContext } from "../HomeCom/contexts/ClickContext";
+import Search from "../HomeCom/Modlas/Search"
 
 function StoreHeader() {
+
+    const {openModal} = useContext(ClickContext);
+
     return (
         <Header>
             <HContainer>
                 <HLogo />
-                <Link to='/'>
-                    <Adrress>
-                        강남대로 396 강남역[2호선]
-                    </Adrress>
-                </Link>
+                <Adrress onClick={openModal}>
+                    강남대로 396 강남역[2호선]
+                </Adrress>
                 <SearchBar placeholder="상품이나 가게명을 입력하세요" />
                 <AppBtn>앱으로 보기</AppBtn>
                 <ThreeLineBtn />
             </HContainer>
+            <Search/>
         </Header>
     )
 }

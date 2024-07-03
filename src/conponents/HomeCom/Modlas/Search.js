@@ -1,11 +1,12 @@
 import React, { useContext, useEffect } from "react";
-import styled from "styled-components";
-import ModalPortal from "./ModalPortal";
+import styled, { css } from "styled-components";
 import { ClickContext } from "../contexts/ClickContext";
+import { useLocation } from "react-router-dom";
 
 function Search() {
 
-    const {isClicked, closeModal} = useContext(ClickContext);
+    const { isClicked, closeModal } = useContext(ClickContext);
+    const location = useLocation();
 
     useEffect(() => {
         if (isClicked) {
@@ -14,41 +15,39 @@ function Search() {
             document.body.style.overflow = "auto";
         }
     }, [isClicked])
+
+    const isStore = location.pathname === '/store';
+
     return (
-        <ModalPortal>
-            {isClicked &&
-                (<ModalWrap>
-                    <Overlay onClick={closeModal} />
-                    <ModalBack isClicked={isClicked}>
-                        <StyledCon>
-                            <StyledSpan> 주소 검색 </StyledSpan>
-                            <ExitButton onClick={closeModal}>X</ExitButton>
-                        </StyledCon>
-                        <InputAdd
-                            type="text"
-                            placeholder="지번, 도로명, 건물명으로 검색" />
-                        <Graydiv>
-                            <StyledSpan>
-                                이렇게 입력해 보세요
-                            </StyledSpan>
-                            <ul>
-                                <li>
-                                    도로명 + 건물번호<br />
-                                    예) 배민로 12길 3
-                                </li>
-                                <li>
-                                    건물명 + 번지<br />
-                                    예) 배민로 12-3
-                                </li>
-                                <li>
-                                    건물명, 아파트명<br />
-                                    예) 배민아파트 101동
-                                </li>
-                            </ul>
-                        </Graydiv>
-                    </ModalBack>
-                </ModalWrap>)}
-        </ModalPortal>
+        <ModalWrap>
+            <Overlay isClicked={isClicked} onClick={closeModal} />
+
+            <ModalBack isClicked={isClicked} isStore={isStore}>
+                <StyledCon>
+                    <StyledSpan> 주소 검색 </StyledSpan>
+                    <ExitButton onClick={closeModal}>X</ExitButton>
+                </StyledCon>
+                <InputAdd type="text" placeholder="지번, 도로명, 건물명으로 검색" />
+
+                <Graydiv>
+                    <StyledSpan>이렇게 입력해 보세요</StyledSpan>
+                    <ul>
+                        <li>
+                            도로명 + 건물번호<br />
+                            예) 배민로 12길 3
+                        </li>
+                        <li>
+                            건물명 + 번지<br />
+                            예) 배민로 12-3
+                        </li>
+                        <li>
+                            건물명, 아파트명<br />
+                            예) 배민아파트 101동
+                        </li>
+                    </ul>
+                </Graydiv>
+            </ModalBack>
+        </ModalWrap>
     );
 }
 
@@ -57,28 +56,43 @@ export default Search;
 const Overlay = styled.div`
 position: fixed;
 top:0;
-left: 0;
+display: ${({ isClicked }) => (isClicked ? 'block' : 'none')};
 width: 100%;
 height: 100%;
 background-color: rgba(0,0,0,0.5);
 `
 
 const ModalWrap = styled.div`
+position:fixed;
+z-index:100;
+width:100%;
 `
 
 const ModalBack = styled.div`
 position: fixed;
-bottom: 0;
-left: 0;
+bottom: ${({ isClicked }) => (isClicked ? '0px' : '-800px')};
 width: 100%;
 height: 80%;
 display: flex;
 flex-direction: column;
 background-color: white;
 border-radius: 10px;
-transform: translateY(${props => (props.isClicked ? "0%" : "100%")});
-transition: transform 0.5s linear;
-`;
+transition: bottom 0.2s ease-in-out;
+
+${({ isStore, isClicked }) => isStore && css`
+    @media screen and (max-width: 768px) {
+        ${isClicked ? `
+            width: 300px;
+            height: 400px;
+            top: 30px;
+            left: 30px;
+            border-radius: 10px;
+        ` : `
+            transition: none;
+        `}
+    }
+`}
+`
 
 const InputAdd = styled.input`
 margin-top: 10px;
@@ -115,3 +129,4 @@ flex: 1;
 background-color: #c7c7c7;
 margin-top: 20px;
 `
+

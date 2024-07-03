@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import food1 from "../myImages/food/1.jpg";
 import { useContext } from "react";
-import Search from "./Modlas/Search";
 import gps from "../myImages/logo/gps.png";
 import { Link } from "react-router-dom";
 import { ClickContext } from "./contexts/ClickContext";
@@ -12,7 +11,6 @@ function SildShow() {
 
     return (
         <StyledImageBack>
-            <Search/>
             <StyledImage style={{ backgroundImage: `url(${food1})` }}>
                 <StyledH2>내일까지 어떻게 기다려요?</StyledH2>
                 <StyledH1>배민 스토어는 지금 옵니다.</StyledH1>

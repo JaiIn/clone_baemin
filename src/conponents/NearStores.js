@@ -28,6 +28,3 @@ display: flex;
 flex-direction: column;
 align-items: center;
 `
-
-const SlickPart = styled.div`
-`

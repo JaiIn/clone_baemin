@@ -1,48 +1,10 @@
 import styled from "styled-components";
+import Slicking from "./inbody/Slicking";
 
 function StoreBody() {
     return (
         <Backdiv>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
-            <div>바디 테스트</div>
+            <Slicking/>
         </Backdiv>
     );
 }
